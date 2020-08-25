@@ -1,7 +1,24 @@
 <template>
   <div class="body">
+    <!-- <div class="title">2020年 杭州市 辖区 健康企业管理</div> -->
+    <el-button type="text" class="backBtn" size="mini" @click="goBack">返回上一级</el-button>
     <div id="main" ref="mapChart"></div>
-    <button class="backBtn" @click="goBack">返回</button>
+    <div class="data-panel">
+      <div class="data-panel-item">
+        <div class="explain">已完成注册企业</div>
+        <div class="datanum3">1234</div>
+      </div>
+
+      <div class="data-panel-item">
+        <div class="explain">完成情况</div>
+        <div class="datanum2">90%</div>
+      </div>
+
+      <div class="data-panel-item">
+        <div class="explain">警告</div>
+        <div class="datanum">99</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -93,12 +110,21 @@ export default {
             map: "Map",
             aspectScale: 0.75,
             layoutCenter: ["49%", "51%"], //地图位置
-            layoutSize: "80%",
+            layoutSize: "90%",
             roam: true,
+
             itemStyle: {
               normal: {
                 borderColor: "rgba(147, 235, 248, 1)",
-                borderWidth: 0.5,
+                // borderWidth: 0.5,
+
+                borderWidth: 1,
+                shadowColor: "rgba(56,164,255,.26)",
+                opacity: 0.5,
+                shadowOffsetX: 1,
+                shadowOffsetY: 1,
+                shadowBlur: 1,
+
                 color: {
                   type: "linear-gradient",
                   x: 0,
@@ -108,11 +134,11 @@ export default {
                   colorStops: [
                     {
                       offset: 0,
-                      color: "#009DA1", // 0% 处的颜色
+                      color: "#09132c", // 0% 处的颜色
                     },
                     {
                       offset: 1,
-                      color: "#005B9E", // 50% 处的颜色
+                      color: "#121f4b", // 50% 处的颜色
                     },
                   ],
                   global: true, // 缺省为 false
@@ -121,6 +147,19 @@ export default {
               },
               emphasis: {
                 areaColor: "#2a333d",
+              },
+            },
+            label: {
+              normal: {
+                show: false,
+                textStyle: {
+                  color: "#fff",
+                },
+              },
+              emphasis: {
+                textStyle: {
+                  color: "#fff",
+                },
               },
             },
             z: 2,
@@ -134,12 +173,22 @@ export default {
 
               aspectScale: 0.75,
               layoutCenter: ["50%", "50%"], //地图位置
-              layoutSize: "80%",
+              layoutSize: "90%",
               // roam: true,
               itemStyle: {
                 normal: {
-                  borderColor: "rgba(147, 235, 248, 0.6)",
-                  borderWidth: 0.8,
+                  // borderColor: "rgba(147, 235, 248, 0.6)",
+                  // borderColor: "#4b70ff",
+                  // borderWidth: 0.8,
+
+                  areaColor: "rgba(0,255,255,.02)",
+                  borderColor: "#00ffff",
+                  borderWidth: 0.5,
+                  shadowColor: "#00ffff",
+                  shadowOffsetX: 0,
+                  shadowOffsetY: 1,
+                  shadowBlur: 1,
+
                   areaColor: {
                     type: "linear-gradient",
                     x: 0,
@@ -149,18 +198,33 @@ export default {
                     colorStops: [
                       {
                         offset: 0,
-                        color: "#009DA1", // 0% 处的颜色
+                        color: "#09132c", // 0% 处的颜色
                       },
                       {
                         offset: 1,
-                        color: "#005B9E", // 50% 处的颜色
+                        color: "#121f4b", // 50% 处的颜色 #121f4b
                       },
                     ],
                     global: true, // 缺省为 false
                   },
                 },
                 emphasis: {
-                  areaColor: "rgba(147, 235, 248, 0)",
+                  // areaColor: "rgba(147, 235, 248, 0)",
+                  areaColor: "rgba(0,255,255,.1)",
+     
+                },
+              },
+              label: {
+                normal: {
+                  show: false,
+                  textStyle: {
+                    color: "#fff",
+                  },
+                },
+                emphasis: {
+                  textStyle: {
+                    color: "#fff",
+                  },
                 },
               },
             },
@@ -203,17 +267,62 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.title {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
 .body {
   width: 100%;
   height: 100%;
   position: relative;
+  box-sizing: border-box;
 }
 #main {
   width: 100%;
-  height: 100%;
+  height: 90%;
 }
 .backBtn {
   position: absolute;
-  bottom: 20px;
+  top: 20px;
+  left: 20px;
+  z-index: 3;
+}
+.data-panel {
+  width: 70%;
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .data-panel-item {
+    
+  }
+  .explain {
+    font-size: 14px;
+    color: #C0C4CC;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .datanum {
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #ff1774;
+  }
+  .datanum2 {
+    color: #00fbe6;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+  .datanum3 {
+    color: #4669fb;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
 }
 </style>
