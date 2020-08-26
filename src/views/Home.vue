@@ -8,7 +8,9 @@
           </div>
         </el-col>
         <el-col :xs="12" :sm="12" :md="7" :lg="7" :xl="7">
-          <div class="panel-item"></div>
+          <div class="panel-item">
+            <CompanyList />
+          </div>
         </el-col>
         <el-col :xs="12" :sm="12" :md="7" :lg="7" :xl="7">
           <div class="panel-item"></div>
@@ -37,11 +39,13 @@
 <script>
 // @ is an alias to /src
 import MapChart from "@/components/MapChart.vue";
+import CompanyList from "@/components/CompanyList.vue"
 
 export default {
   name: "Home",
   components: {
     MapChart,
+    CompanyList,
   },
 };
 </script>
