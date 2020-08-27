@@ -9,10 +9,12 @@
   "dependencies": {
     "@jiaminghi/data-view": "^2.9.8",
     "axios": "^0.19.2",
+    "clusterize.js": "^0.18.1",
     "core-js": "^3.6.5",
     "echarts": "^4.8.0",
     "element-ui": "^2.13.2",
     "lib-flexible": "^0.3.2",
+    "pl-table": "^2.7.5",
     "vue": "^2.6.11",
     "vue-amap": "^0.5.10",
     "vue-axios": "^2.1.5",

@@ -15,16 +15,20 @@
         <el-radio-button label="未完成"></el-radio-button>
       </el-radio-group>
     </div>
-    <el-table
+    <pl-table
       class="table"
       :data="tableData"
-      max-height="400"
+      height="420"
       style="width: 100%"
       size="mini"
+      use-virtual
+      :resizable="false"
     >
-      <el-table-column prop="date" label="日期" min-width="40"></el-table-column>
-      <el-table-column prop="name" label="姓名"></el-table-column>
-    </el-table>
+      <el-table-column :index="indexMethod" type="index" align="center" label="序号" min-width="20"></el-table-column>
+      <el-table-column prop="name" label="公司名称"></el-table-column>
+      <el-table-column prop="local" label="所在辖区"></el-table-column>
+      <el-table-column prop="prod" label="完成度" min-width="40"></el-table-column>
+    </pl-table>
   </div>
 </template>
 
@@ -35,78 +39,24 @@ export default {
       searchText: "",
       radio4: "全部",
       tableData: [
-        {
-          date: "2016-05-02",
-          name: "王小虎王小虎王小虎王小虎",
-        },
-        {
-          date: "2016-05-04",
-          name: "王小虎",
-        },
-        {
-          date: "2016-05-01",
-          name: "王小虎",
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-        },
+        
       ],
     };
   },
-  methods: {},
+  mounted() {
+
+    const arr = new Array(2001).fill({
+      name: '浙江多谱检测科技有限公司',
+      local: '浙江省杭州市西湖区',
+      prod: '80%'
+    })
+    this.tableData = arr
+  },
+  methods: {
+    indexMethod(index) {
+      return index + 1
+    }
+  },
 };
 </script>
 
@@ -147,27 +97,51 @@ export default {
   font-size: 10px;
 }
 
+// 淦 为了自定义elementui table 的样式，我真的要吐了
 ::v-deep .el-table,
 .el-table__expanded-cell {
   background: transparent;
+  color: #ddd;
 }
 ::v-deep .el-table tr {
   background-color: transparent !important;
-  
 }
 ::v-deep .el-table--enable-row-transition .el-table__body td,
 .el-table .cell {
   background-color: transparent;
-  font-size: 10px;
+  font-size: 12px;
+  // padding: 8px;
 }
 ::v-deep .el-table th,
 .el-table tr {
   background: #39486e;
+  // border: 0px;
+  color: #ddd;
+  font-size: 14px;
+}
+
+
+::v-deep .el-table .is-leaf {
+  border: 0px;
 }
 
 ::v-deep .el-table td {
-  padding: 4px;
+  padding: 5px 0;
   border: 0px;
+}
+
+::v-deep .el-table--enable-row-hover .el-table__body tr:hover>td {
+  background: #39486e;
+  color: #ddd;
+}
+
+::v-deep .el-table__body {
+  width: 100% !important;
+}
+
+::v-deep .el-table__virtual-wrapper {
+  width: 100% !important;
+
 }
 
 ::v-deep .el-table__body-wrapper::-webkit-scrollbar {
@@ -178,6 +152,7 @@ export default {
   background-color: #ddd;
   border-radius: 3px;
 }
+
 ::v-deep .el-table::before {
   // left: 0;
   // bottom: 0;
@@ -185,7 +160,28 @@ export default {
   height: 0px;
 }
 
+// ::v-deep .current-row > td {
+//   background: rgba(0, 158, 250, 0.219) !important;
+// }
+
+::v-deep .el-table--border {
+  border: 0px;
+}
+
+::v-deep .el-table--border::after, .el-table--group::after, .el-table::before {
+  width: 0;;
+}
+
+// 滚动条上面的小横线
+::v-deep .gutter {
+  border-bottom: 0px !important;
+}
+
+::v-deep .el-table__body tr.current-row>td {
+  background: transparent;
+}
+
 .table {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 </style>

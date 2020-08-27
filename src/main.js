@@ -9,11 +9,14 @@ import VueAxios from 'vue-axios'
 import dataV from '@jiaminghi/data-view'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import plTable from 'pl-table'
+import 'pl-table/themes/index.css'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 Vue.use(VueAxios, Axios)
 Vue.use(dataV)
+Vue.use(plTable);
 // Vue.use(VueAMap)
 // Vue.use(libFlexible)
 
